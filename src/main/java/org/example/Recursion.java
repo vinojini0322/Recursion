@@ -5,7 +5,9 @@ public class Recursion {
         System.out.print("Print numbers from n to 1 : ");
         printNum(7);
         System.out.println();
-        System.out.println("Print upto nth fibonacci numbers " + fibonacciNumber(50));
+        System.out.println("Print upto nth fibonacci numbers " + fibonacciNumber(5));
+        int[] arr = {1, 2, 4, 5, 7, 8, 12, 23, 44, 56};
+        System.out.println("Binary search with recursion : " + binarySearch(arr, 100, 0, arr.length - 1));
     }
 
     //    Print numbers n -> 1
@@ -23,6 +25,23 @@ public class Recursion {
             return n;
         }
         return fibonacciNumber(n - 1) + fibonacciNumber(n - 2);
+    }
+
+    private static int binarySearch(int[] arr, int target, int s, int e) {
+        if (s > e) {
+            return -1;
+        }
+        int mid = s + (e - s) / 2;
+        if (target == arr[mid]) {
+            return mid;
+        }
+        if (target > arr[mid]) {
+            return binarySearch(arr, target, mid + 1, e);
+        }
+        if (target < arr[mid]) {
+            return binarySearch(arr, target, s, mid - 1);
+        }
+        return -1;
     }
 
 }
